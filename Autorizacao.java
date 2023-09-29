@@ -28,8 +28,7 @@ public class Autorizacao {
     }
     @Override
     public String toString() {
-        return "Autorizacao [codigo=" + codigo + ", medico=" + medico + ", tipoDoExame=" + tipoDoExame + ", data="
-                + data + ", paciente=" + paciente + "]";
+        return "  Codigo:  " + codigo + "  Medico:  " + medico + "  TipoDoExame:  " + tipoDoExame + "  Data: " + data + "  Paciente: " + paciente ;
     }
 
 
