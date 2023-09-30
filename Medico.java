@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Medico extends Usuario {
     private AreasAtuacao areasAtuacao;
 
@@ -13,6 +15,8 @@ public class Medico extends Usuario {
     public void filtarPaciente(Paciente paciente){
         Autorizacao lista[] = Sistema.getListaAutorizacao();
 
+        Arrays.sort(lista);
+
         for (int i = 0; i < lista.length; i++) {
             if(lista[i].getPaciente() == paciente){
                 System.out.println(lista[i]);
@@ -22,6 +26,8 @@ public class Medico extends Usuario {
 
     public void filtarTipoDeExame(AreasAtuacao tipoDeExame){
         Autorizacao lista[] = Sistema.getListaAutorizacao();
+        
+        Arrays.sort(lista);
 
         for (int i = 0; i < lista.length; i++) {
             if(lista[i].getTipoDoExame() == tipoDeExame){
