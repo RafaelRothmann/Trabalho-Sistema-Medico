@@ -50,4 +50,5 @@ public class Autorizacao implements Comparable<Autorizacao> {
         LocalDate dataOutro = LocalDate.parse(outro.getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         return dateEsse.compareTo(dataOutro);
     }
+
 }
