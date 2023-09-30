@@ -1,10 +1,12 @@
+import java.text.ParseException;
+
 public class Paciente extends Usuario {
 
     public Paciente(String nome, int id) {
         super(nome, id);
     }
 
-    public boolean adicionarAutorizacao(Autorizacao autorizacao) {
+    public boolean adicionarAutorizacao(Autorizacao autorizacao) throws ParseException {
 
         if (Sistema.VerficadorData(autorizacao.getData(), this)) { 
             //vai verificar se a data é 30 dias antes ou depois de uma autorizacao
