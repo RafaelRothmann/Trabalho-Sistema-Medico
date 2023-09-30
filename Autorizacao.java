@@ -1,6 +1,9 @@
-public class Autorizacao {
-    private int codigo;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class Autorizacao implements Comparable<Autorizacao> {
     private static int codigoGerador = 1;
+    private int codigo;
     private Medico medico;
     private AreasAtuacao tipoDoExame;
     private String data;
@@ -39,6 +42,13 @@ public class Autorizacao {
     public String toString() {
         return "Codigo: " + codigo + ", Medico: " + medico + ", TipoDoExame: " + tipoDoExame + ", Data: " + data
         + ", Paciente: " + paciente;
+    }
+
+    @Override
+    public int compareTo(Autorizacao outro) {
+        LocalDate dateEsse = LocalDate.parse(data, DateTimeFormatter.ofPattern("dd/MM/yyyy")); 
+        LocalDate dataOutro = LocalDate.parse(outro.getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return dateEsse.compareTo(dataOutro);
     }
 
 }
