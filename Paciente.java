@@ -1,40 +1,47 @@
+public class Paciente extends Usuario {
 
-/**
- * Escreva uma descrição da classe Paciente aqui.
- * 
- * @author (seu nome) 
- * @version (um número da versão ou uma data)
- */
-import java.util.Date;
-
-class Paciente {
-    private String nome;
-    // Outros atributos e métodos relevantes para um paciente
-
-    public Paciente(String nome) {
-        this.nome = nome;
+    public Paciente(String nome, int id) {
+        super(nome, id);
     }
 
-    public String getNome() {
-        return nome;
+    public boolean adicionarAutorizacao(Autorizacao autorizacao) {
+
+        if (Sistema.VerficadorData(autorizacao.getData(), this)) { 
+            //vai verificar se a data é 30 dias antes ou depois de uma autorizacao
+
+            Sistema.adicionarAutorizacao(autorizacao);
+            return true;
+            //vai adicionar a Autorizacao ao array de autorizacoes, ""Banco de dados"" do programa
+        }
+
+        return false;
     }
+
+    public boolean modificarAutorizacao(Autorizacao autorizacaoAntiga, Autorizacao autorizacaoNova){
+        Sistema.removerAutorizacao(autorizacaoAntiga);
+        // remove a autorizacao antiga no banco de dados
+
+        if(VerficadorData(autorizacaoNova.getData(), this)){ // verifica a data
+            Sistema.adicionarAutorizacao(autorizacaoNova); //adiciona a nova autorizacao
+            return true;
+        } else {
+            Sistema.adicionarAutorizacao(autorizacaoAntiga); //adiciona a autorizacao antiga de volta
+            return false;
+        }
+    }
+
+    private boolean VerficadorData(String data, Paciente paciente) {
+        return false;
+    }
+
+    public void filtarAutorizacao(){
+        Autorizacao listaSolicitacao[] = Sistema.getListaAutorizacao();
+        
+        for (int i = 0; i < listaSolicitacao.length; i++) {
+            if(listaSolicitacao[i].getPaciente() == this){ 
+            System.out.println(listaSolicitacao[i]); //mostra todas as autorizacoes do paciente
+            }
+        }
+    }
+
 }
-
-class Autorizacao {
-    private Paciente paciente;
-    private Date data;
-
-    public Autorizacao(Paciente paciente, Date data) {
-        this.paciente = paciente;
-        this.data = data;
-    }
-
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    public Date getData() {
-        return data;
-    }
-}
-
