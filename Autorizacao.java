@@ -10,6 +10,8 @@ public class Autorizacao {
         this.tipoDoExame = tipoDoExame;
         this.data = data;
         this.paciente = paciente;
+        codigo=codigoGerador;
+        codigoGerador++;
     }
     public int getCodigo() {
         return codigo;
