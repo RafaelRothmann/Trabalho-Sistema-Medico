@@ -1,31 +1,35 @@
+import java.text.ParseException;
+import java.util.Arrays;
+
 public class Paciente extends Usuario {
 
     public Paciente(String nome, int id) {
         super(nome, id);
     }
 
-    public boolean adicionarAutorizacao(Autorizacao autorizacao) {
+    public boolean adicionarAutorizacao(Autorizacao autorizacao) throws ParseException {
 
-        if (Sistema.VerficadorData(autorizacao.getData(), this)) { 
-            //vai verificar se a data é 30 dias antes ou depois de uma autorizacao
+        if (Sistema.VerficadorData(autorizacao.getData(), this)) {
+            // vai verificar se a data é 30 dias antes ou depois de uma autorizacao
 
             Sistema.adicionarAutorizacao(autorizacao);
             return true;
-            //vai adicionar a Autorizacao ao array de autorizacoes, ""Banco de dados"" do programa
+            // vai adicionar a Autorizacao ao array de autorizacoes, ""Banco de dados"" do
+            // programa
         }
 
         return false;
     }
 
-    public boolean modificarAutorizacao(Autorizacao autorizacaoAntiga, Autorizacao autorizacaoNova){
+    public boolean modificarAutorizacao(Autorizacao autorizacaoAntiga, Autorizacao autorizacaoNova) {
         Sistema.removerAutorizacao(autorizacaoAntiga);
         // remove a autorizacao antiga no banco de dados
 
-        if(VerficadorData(autorizacaoNova.getData(), this)){ // verifica a data
-            Sistema.adicionarAutorizacao(autorizacaoNova); //adiciona a nova autorizacao
+        if (VerficadorData(autorizacaoNova.getData(), this)) { // verifica a data
+            Sistema.adicionarAutorizacao(autorizacaoNova); // adiciona a nova autorizacao
             return true;
         } else {
-            Sistema.adicionarAutorizacao(autorizacaoAntiga); //adiciona a autorizacao antiga de volta
+            Sistema.adicionarAutorizacao(autorizacaoAntiga); // adiciona a autorizacao antiga de volta
             return false;
         }
     }
@@ -34,14 +38,48 @@ public class Paciente extends Usuario {
         return false;
     }
 
-    public void filtarAutorizacao(){
+    public void filtarAutorizacao() {
         Autorizacao listaSolicitacao[] = Sistema.getListaAutorizacao();
-        
+
+        Arrays.sort(listaSolicitacao);
+
         for (int i = 0; i < listaSolicitacao.length; i++) {
-            if(listaSolicitacao[i].getPaciente() == this){ 
-            System.out.println(listaSolicitacao[i]); //mostra todas as autorizacoes do paciente
+            if (listaSolicitacao[i].getPaciente() == this) {
+                System.out.println(listaSolicitacao[i]); // mostra todas as autorizacoes do paciente
             }
         }
+    }
+
+    public int concluirExame(Autorizacao autorizacao) {
+        Autorizacao Lista[] = Sistema.getListaAutorizacao();
+
+        for (int i = 0; i < Lista.length; i++) {
+            if (autorizacao.equals(Lista[i])) {
+                Sistema.setEstado(i, Estado.REALIZADO);
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int dataDeConclusao(Autorizacao autorizacao, String data) {
+        Autorizacao Lista[] = Sistema.getListaAutorizacao();
+
+        for (int i = 0; i < Lista.length; i++) {
+            if (autorizacao.equals(Lista[i])) {
+                Sistema.setDataFinalizada(i, data);
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void concluirExame(int index){
+        Sistema.setEstado(index,Estado.REALIZADO);
+    }
+
+    public void dataDeConclusao(int index, String data){
+        Sistema.setDataFinalizada(index, data);
     }
 
 }
