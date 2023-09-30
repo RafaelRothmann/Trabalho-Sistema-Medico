@@ -1,6 +1,7 @@
 public enum AreasAtuacao {
+    //Todos os tipos de exames
     PEDIATRIA,
-    TOMOGRAFIA,
+    RADIOLOGIA,
     DERMATOLOGIA,
     ENDOCRINOLOGIA,
     GERIATRIA,
@@ -8,5 +9,7 @@ public enum AreasAtuacao {
     OFTALMOLOGIA,
     PSIQUIATRIA,
     UROLOGIA,
-    COLONOSCOPISTA;
+    COLONOSCOPISTA,
+    GASTROENTELOGIA,
+    OTORRINOLARINGOLOGIA;
 }
