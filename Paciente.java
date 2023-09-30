@@ -1,6 +1,7 @@
 import java.text.ParseException;
 import java.util.Arrays;
 
+
 public class Paciente extends Usuario {
 
     public Paciente(String nome, int id) {
