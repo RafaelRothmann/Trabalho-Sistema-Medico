@@ -76,6 +76,7 @@ public class Autorizacao implements Comparable<Autorizacao> {
             msg += ", Data do Exame: " + dataFinalizada;
         }
 
-        return msg;
+        return msg; 
+        
     }
 }
