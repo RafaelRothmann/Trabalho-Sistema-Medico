@@ -1,6 +1,4 @@
 import java.text.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Programa {
@@ -421,21 +419,15 @@ public class Programa {
                     paciente.filtarAutorizacao();
                     System.out.print("Digite o codigo: ");
                     codigo = sc.nextInt();
-                    System.out.println("Qual data que foi concluida? (Formato:\"dd/MM/yyyy\")");
+                    System.out.print("Qual data que foi concluida? (Formato:\"dd/MM/yyyy\") ");
                     String data = sc.next();
 
                     if (data.length() != 10) {
                         System.out.println("FORMATO DD/MM/YYYYY ERRADO");
                     } else {
                         if (Sistema.VerficadorData(data, paciente)) {
-                            Autorizacao lista[] = Sistema.getListaAutorizacao();
-
-                            if (lista[codigo - 1].compareTo(new Autorizacao(null, null, data, paciente)) < 0) {
-                                Sistema.setData(codigo - 1, data);
-                            }
-
                             paciente.concluirExame(codigo - 1);
-                            paciente.dataDeConclusao(codigo - 1, data);
+                            Sistema.setData(codigo - 1, data);
                         } else {
                             System.out.println("DATA 30 DIAS ANTES DE UMA AUTORIZACAO OU 30 DIAS DEPOIS");
                         }
