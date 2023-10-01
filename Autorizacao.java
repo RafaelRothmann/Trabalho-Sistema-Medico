@@ -16,6 +16,7 @@ public class Autorizacao implements Comparable<Autorizacao> {
         this.tipoDoExame = tipoDoExame;
         this.data = data;
         this.paciente = paciente;
+        this.estado = Estado.NAOREALIZADO;
         codigo = codigoGerador;
         codigoGerador++;
     }
@@ -61,6 +62,44 @@ public class Autorizacao implements Comparable<Autorizacao> {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Autorizacao other = (Autorizacao) obj;
+        if (codigo != other.codigo)
+            return false;
+        if (medico == null) {
+            if (other.medico != null)
+                return false;
+        } else if (!medico.equals(other.medico))
+            return false;
+        if (tipoDoExame != other.tipoDoExame)
+            return false;
+        if (data == null) {
+            if (other.data != null)
+                return false;
+        } else if (!data.equals(other.data))
+            return false;
+        if (paciente == null) {
+            if (other.paciente != null)
+                return false;
+        } else if (!paciente.equals(other.paciente))
+            return false;
+        if (estado != other.estado)
+            return false;
+        if (dataFinalizada == null) {
+            if (other.dataFinalizada != null)
+                return false;
+        } else if (!dataFinalizada.equals(other.dataFinalizada))
+            return false;
+        return true;
+    }
+
+    @Override
     public int compareTo(Autorizacao outro) {
         LocalDate dateEsse = LocalDate.parse(data, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         LocalDate dataOutro = LocalDate.parse(outro.getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -69,11 +108,15 @@ public class Autorizacao implements Comparable<Autorizacao> {
 
     @Override
     public String toString() {
-        String msg = "Codigo: " + codigo + ", Medico = " + medico + ", TipoDoExame: " + tipoDoExame + ", Data: " + data
-        + ", Paciente = " + paciente + ", Estado: " + getEstado();
+        String msg = "Codigo: " + codigo + 
+        "\nMedico = " + medico + 
+        "\nTipoDoExame: " + tipoDoExame+ 
+        "\nData: " + data + 
+        "\nPaciente = " + paciente + 
+        "\nEstado: " + getEstado();
 
         if (estado.equals(Estado.REALIZADO)) {
-            msg += ", Data do Exame: " + dataFinalizada;
+            msg += "\n Data do Exame: " + dataFinalizada;
         }
 
         return msg;
