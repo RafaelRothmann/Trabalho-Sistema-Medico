@@ -25,20 +25,24 @@ public class Administrador extends Usuario {
     
     public void buscarMedico(Medico medico){
         Autorizacao lista[] = Sistema.getListaAutorizacao();
+
+        System.out.println();
         
         for (int i = 0; i < lista.length; i++) {
             if(lista[i].getMedico().equals(medico)){
-                System.out.println(lista[i]);
+                System.out.println(lista[i] + "\n");
             }
         }
     }
 
     public void buscarPaciente(Paciente paciente){
         Autorizacao lista[] = Sistema.getListaAutorizacao();
-        
+
+        System.out.println();
+
         for (int i = 0; i < lista.length; i++) {
             if(lista[i].getPaciente().equals(paciente)){
-                System.out.println(lista[i]);
+                System.out.println(lista[i] + "\n");
             }
         }
     }
@@ -47,11 +51,11 @@ public class Administrador extends Usuario {
         return Sistema.getListaMedicos().length;
     }
     
-    private String numeroDeAutorizacoes() {
+    private int numeroDeAutorizacoes() {
         return Sistema.getListaAutorizacao().length;
     }
 
-    private String numeroDePacientes() {
+    private int numeroDePacientes() {
         return Sistema.getListaPacientes().length;
     }
 
