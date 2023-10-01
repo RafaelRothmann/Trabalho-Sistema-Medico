@@ -1,5 +1,9 @@
+package service;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import entities.*;
 
 public class Autorizacao implements Comparable<Autorizacao> {
     private static int codigoGerador = 1;
@@ -57,6 +61,10 @@ public class Autorizacao implements Comparable<Autorizacao> {
         this.dataFinalizada = dataFinalizado;
     }
 
+    public void setData(String data) {
+        this.data = data;
+    }
+
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
@@ -103,21 +111,17 @@ public class Autorizacao implements Comparable<Autorizacao> {
     public int compareTo(Autorizacao outro) {
         LocalDate dateEsse = LocalDate.parse(data, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         LocalDate dataOutro = LocalDate.parse(outro.getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        return dateEsse.compareTo(dataOutro);
+        return dataOutro.compareTo(dateEsse);
     }
 
     @Override
     public String toString() {
-        String msg = "Codigo: " + codigo + 
-        "\nMedico = " + medico + 
-        "\nTipoDoExame: " + tipoDoExame+ 
-        "\nData: " + data + 
-        "\nPaciente = " + paciente + 
-        "\nEstado: " + getEstado();
-
-        if (estado.equals(Estado.REALIZADO)) {
-            msg += "\n Data do Exame: " + dataFinalizada;
-        }
+        String msg = "Codigo: " + codigo +
+                "\nMedico = " + medico +
+                "\nTipoDoExame: " + tipoDoExame +
+                "\nData: " + data +
+                "\nPaciente = " + paciente +
+                "\nEstado: " + getEstado();
 
         return msg;
     }

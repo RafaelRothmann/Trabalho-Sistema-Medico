@@ -1,3 +1,5 @@
+package entities;
+
 public abstract class Usuario {
     private String nome;
     private int id;
@@ -14,7 +16,7 @@ public abstract class Usuario {
     public int getId() {
         return id;
     }
-  
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

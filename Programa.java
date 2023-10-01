@@ -1,6 +1,9 @@
 import java.text.*;
 import java.util.*;
 
+import entities.*;
+import service.*;
+
 public class Programa {
     public static Scanner sc = new Scanner(System.in);
 
@@ -307,7 +310,7 @@ public class Programa {
         } while (menu < 1 || menu > 3);
     }
 
-    public static void buscarUsuario(Administrador administrador) { // (função de adiministrador) busca um medico
+    public static void buscarUsuario(Administrador administrador) { // (função de adiministrador) busca um usuarios
 
         int menu;
 
@@ -393,7 +396,7 @@ public class Programa {
         menuPaciente(lista[index]);
     }
 
-    private static void menuPaciente(Paciente paciente) throws ParseException { // (função paciente) menu paciente
+    public static void menuPaciente(Paciente paciente) throws ParseException { // (função paciente) menu paciente
         int menu = 1;
 
         do {
@@ -495,7 +498,7 @@ public class Programa {
         menuMedico(lista[index]);
     }
 
-    private static void menuMedico(Medico medico) throws ParseException {// (função medico) menu medico
+    public static void menuMedico(Medico medico) throws ParseException {// (função medico) menu medico
         int menu = 1;
 
         do {

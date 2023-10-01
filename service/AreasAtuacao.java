@@ -1,5 +1,7 @@
+package service;
+
 public enum AreasAtuacao {
-    //Todos os tipos de exames
+    // Todos os tipos de exames
     PEDIATRIA,
     RADIOLOGIA,
     DERMATOLOGIA,
