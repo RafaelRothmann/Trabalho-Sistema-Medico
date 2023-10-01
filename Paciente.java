@@ -39,10 +39,11 @@ public class Paciente extends Usuario {
         Autorizacao listaSolicitacao[] = Sistema.getListaAutorizacao();
 
         Arrays.sort(listaSolicitacao);
+        System.out.println();
 
         for (int i = 0; i < listaSolicitacao.length; i++) {
             if (listaSolicitacao[i].getPaciente() == this) {
-                System.out.println(listaSolicitacao[i]); // mostra todas as autorizacoes do paciente
+                System.out.println(listaSolicitacao[i] + "\n"); // mostra todas as autorizacoes do paciente
             }
         }
     }
