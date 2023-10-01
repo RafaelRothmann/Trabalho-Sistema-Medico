@@ -78,5 +78,4 @@ public class Paciente extends Usuario {
     public void dataDeConclusao(int index, String data){
         Sistema.setDataFinalizada(index, data);
     }
-
 }
