@@ -68,7 +68,7 @@ public class Administrador extends Usuario {
         double percentual = 0;
 
         for (int i = 0; i < lista.length; i++) {
-            if (lista[i].getEstado().equals(Estado.REALIZADO)) {
+            if (lista[i].getEstado().equals("Realizado")) {
                 percentual++;
             }
         }
