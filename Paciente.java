@@ -22,21 +22,17 @@ public class Paciente extends Usuario {
         return false;
     }
 
-    public boolean modificarAutorizacao(Autorizacao autorizacaoAntiga, Autorizacao autorizacaoNova) {
+    public boolean modificarAutorizacao(Autorizacao autorizacaoAntiga, Autorizacao autorizacaoNova) throws ParseException {
         Sistema.removerAutorizacao(autorizacaoAntiga);
         // remove a autorizacao antiga no banco de dados
 
-        if (VerficadorData(autorizacaoNova.getData(), this)) { // verifica a data
+        if (Sistema.VerficadorData(autorizacaoNova.getData(), this)) { // verifica a data
             Sistema.adicionarAutorizacao(autorizacaoNova); // adiciona a nova autorizacao
             return true;
         } else {
             Sistema.adicionarAutorizacao(autorizacaoAntiga); // adiciona a autorizacao antiga de volta
             return false;
         }
-    }
-
-    private boolean VerficadorData(String data, Paciente paciente) {
-        return false;
     }
 
     public void filtarAutorizacao() {
@@ -82,5 +78,4 @@ public class Paciente extends Usuario {
     public void dataDeConclusao(int index, String data){
         Sistema.setDataFinalizada(index, data);
     }
-
 }

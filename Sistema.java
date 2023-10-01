@@ -40,12 +40,6 @@ public class Sistema {
     }
 
     public static boolean adicionarAutorizacao(Autorizacao autorizacao) {
-        for (int i = 0; i < ListaAutorizacao.size(); i++) {
-            if (ListaAutorizacao.get(i).getTipoDoExame() == autorizacao.getTipoDoExame()) {
-                return false;
-            }
-        }
-
         adicionarMedico(autorizacao.getMedico());
         adicionarPaciente(autorizacao.getPaciente());
         ListaAutorizacao.add(autorizacao);
@@ -116,6 +110,10 @@ public class Sistema {
         ListaAutorizacao.get(index).setDataFinalizado(data);
     }
 
+    public static void setData(int index, String data){
+        ListaAutorizacao.get(index).setData(data);
+    }
+
     public static Autorizacao[] getListaAutorizacao() {
         Autorizacao lista[] = new Autorizacao[ListaAutorizacao.size()];
 
@@ -127,7 +125,7 @@ public class Sistema {
     }
 
     public static Medico[] getListaMedicos() {
-        Medico lista[] = new Medico[ListaAutorizacao.size()];
+        Medico lista[] = new Medico[ListaMedico.size()];
 
         for (int i = 0; i < lista.length; i++) {
             lista[i] = ListaMedico.get(i);
@@ -137,7 +135,7 @@ public class Sistema {
     }
 
     public static Paciente[] getListaPacientes() {
-        Paciente lista[] = new Paciente[ListaAutorizacao.size()];
+        Paciente lista[] = new Paciente[ListaPaciente.size()];
 
         for (int i = 0; i < lista.length; i++) {
             lista[i] = ListaPaciente.get(i);
@@ -147,12 +145,12 @@ public class Sistema {
     }
 
     public static Administrador[] getListaAdministrador() {
-        Administrador lista[] = new Administrador[ListaAutorizacao.size()];
+        Administrador lista[] = new Administrador[ListaAdministrador.size()];
 
         for (int i = 0; i < lista.length; i++) {
             lista[i] = ListaAdministrador.get(i);
         }
-
+        
         return lista;
     }
 }
