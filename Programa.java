@@ -5,9 +5,9 @@ public class Programa {
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) throws ParseException {
-        contasIniciais();
-        examesIniciais();
-        menuContas();
+        contasIniciais(); //Inicia já com 1 administrador, 11 médicos e 11 pacientes
+        examesIniciais(); //Inicia com 10 autorizações
+        menuContas(); //Inicia o menu principal
     }
 
     public static void contasIniciais() {
@@ -39,10 +39,10 @@ public class Programa {
     }
 
     public static void examesIniciais() {
-        Medico listaMedico[] = Sistema.getListaMedicos();
-        Paciente listaPaciente[] = Sistema.getListaPacientes();
+        Medico listaMedico[] = Sistema.getListaMedicos(); //pega todos os medicos guardados no sistema
+        Paciente listaPaciente[] = Sistema.getListaPacientes(); //pega todos  os pacientes no sistema
         String listaDatas[] = {
-                "01/01/2024",
+                "01/01/2024",     //datas aleatorias
                 "11/01/2024",
                 "28/02/2024",
                 "20/09/2024",
@@ -54,14 +54,13 @@ public class Programa {
                 "21/11/2024"
         };
 
-        for (int i = 0; i < listaDatas.length; i++) {
-            Sistema.adicionarAutorizacao(
-                    new Autorizacao(listaMedico[i], listaMedico[i].getAreasAtuacao(), listaDatas[i], listaPaciente[i]));
+        for (int i = 0; i < listaDatas.length; i++) { //coloca no sistema as autorizações
+            Sistema.adicionarAutorizacao(new Autorizacao(listaMedico[i], listaMedico[i].getAreasAtuacao(), listaDatas[i], listaPaciente[i]));
         }
 
     }
 
-    public static void printarListaAdministrador() {
+    public static void printarListaAdministrador() { //Printa os administradores
         Administrador listaAdm[] = Sistema.getListaAdministrador();
 
         for (Administrador administrador : listaAdm) {
@@ -70,7 +69,7 @@ public class Programa {
 
     }
 
-    public static Medico printarListaMedico() {
+    public static Medico printarListaMedico() { //Printa os medicos e retorna o medico escolhido
         Medico listaMedico[] = Sistema.getListaMedicos();
         int index = -1;
 
@@ -88,7 +87,7 @@ public class Programa {
         }
     }
 
-    public static AreasAtuacao printarListaAreasAtuacaoSemUso() {
+    public static AreasAtuacao printarListaAreasAtuacaoSemUso() { //Printa as areas de atuacao
 
         List<AreasAtuacao> listaNaoUsados = List.of(
                 AreasAtuacao.PEDIATRIA,
@@ -124,7 +123,7 @@ public class Programa {
         return listaNaoUsados.get(index - 1);
     }
 
-    public static AreasAtuacao printarListaAreasAtuacao() {
+    public static AreasAtuacao printarListaAreasAtuacao() { //Printa as areas de atuacao e retorna uma area escolhida
 
         List<AreasAtuacao> lista = List.of(
                 AreasAtuacao.PEDIATRIA,
@@ -160,7 +159,7 @@ public class Programa {
         return lista.get(index - 1);
     }
 
-    public static Paciente printarListaPaciente() {
+    public static Paciente printarListaPaciente() { //Printa os pacientes e retorna o paciente escolhido
         Paciente listaPacientes[] = Sistema.getListaPacientes();
         int index = -1;
 
@@ -179,7 +178,7 @@ public class Programa {
 
     }
 
-    public static void menuContas() throws ParseException {
+    public static void menuContas() throws ParseException { //Menu principal
         int menu = 1;
 
         do {
@@ -207,7 +206,7 @@ public class Programa {
 
     }
 
-    public static void escolherAdministrador() {
+    public static void escolherAdministrador() { //(função adiministrador) escolhe um adinistrador para iniciar o menu com ele
         Administrador lista[] = Sistema.getListaAdministrador();
         int index = -1;
         boolean idCerto = false;
@@ -242,7 +241,7 @@ public class Programa {
         menuAdministrador(lista[index]);
     }
 
-    public static void incluirUsuario(Administrador administrador) {
+    public static void incluirUsuario(Administrador administrador) { //(função de adiministrador) inclui um novo usuario
         String nome;
         int menu = 1, id;
         boolean permitido = false;
@@ -305,7 +304,7 @@ public class Programa {
         } while (menu < 1 || menu > 3);
     }
 
-    public static void buscarUsuario(Administrador administrador) {
+    public static void buscarUsuario(Administrador administrador) { //(função de adiministrador) busca um medico
 
         int menu;
 
@@ -325,7 +324,7 @@ public class Programa {
 
     }
 
-    public static void menuAdministrador(Administrador administrador) {
+    public static void menuAdministrador(Administrador administrador) { //(função de adiministrador) menu administrador
         int menu = 1;
 
         do {
@@ -359,7 +358,7 @@ public class Programa {
         } while (menu > 0 && menu < 4);
     }
 
-    public static void escolherPaciente() throws ParseException {
+    public static void escolherPaciente() throws ParseException { //(função paciente) escolhe um paciente e incia um menu com ele
         Paciente lista[] = Sistema.getListaPacientes();
         int index = -1;
         boolean idCerto = false;
@@ -393,7 +392,7 @@ public class Programa {
         menuPaciente(lista[index]);
     }
 
-    private static void menuPaciente(Paciente paciente) throws ParseException {
+    private static void menuPaciente(Paciente paciente) throws ParseException { //(função paciente) menu paciente
         int menu = 1;
 
         do {
@@ -464,7 +463,7 @@ public class Programa {
 
     }
 
-    public static void escolherMedico() throws ParseException {
+    public static void escolherMedico() throws ParseException {//(função medico) escolhe um médico e inicia o menu com ele 
         Medico lista[] = Sistema.getListaMedicos();
         int index = -1;
         boolean idCerto = false;
@@ -498,7 +497,7 @@ public class Programa {
         menuMedico(lista[index]);
     }
 
-    private static void menuMedico(Medico medico) throws ParseException {
+    private static void menuMedico(Medico medico) throws ParseException {//(função medico) menu medico
         int menu = 1;
 
         do {
